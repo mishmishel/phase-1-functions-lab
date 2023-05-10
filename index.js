@@ -21,11 +21,7 @@ distanceFromHqInFeet(50)
 distanceFromHqInFeet(34)
 
 function distanceTravelledInFeet(start, destination) {
-    if (start > destination) {
-        return (destination - start) * -264; 
-    } else if (destination > start) {
-        return (destination - start) * 264;
-    }
+    return Math.abs(destination - start) * 264
 } 
 
 distanceTravelledInFeet(43, 48)
@@ -33,24 +29,22 @@ distanceTravelledInFeet(50, 60)
 distanceTravelledInFeet(34, 28)
 
 function calculatesFarePrice(start, destination) {
-    if ((start - destination) * -264 < 400 || (destination - start) * 264 < 400) {
+    if (Math.abs(destination - start) * 264 < 400) {
         return 0;
-    } else if (start > destination && (start - destination) * 264 >= 400 && (start - destination) * 264 <= 2000) {
-        return (((start - destination) * 264) - 400) / 50;
-    } else if (destination > start && (destination - start) * 264 >= 400 && (destination - start) * 264 <= 2000) {
-        return (((destination - start) * 264) - 400) / 50;
-    } else if ((start - destination) * -264 > 2000 && (start - destination) * -264 <= 2500) { 
-        return 25;
-    } else if ((destination - start) * 264 > 2000 && (destination - start) * 264 <= 2500)  {
-        return 25;
-    } else if (destination > start && (destination - start) * 264 > 2500) {
-        return 'cannot travel that far';
-    } else if (start > destination && (start - destination) * 264 > 2500) {
+    } else if (Math.abs(destination - start) * 264 >= 400 && Math.abs(destination - start) * 264 < 2000) {
+        return (Math.abs(destination - start) * 264 - 400) / 50;
+    } else if (Math.abs(destination - start) * 264 > 2000 && Math.abs(destination - start) * 264 <= 2500) {
+        return 25; 
+    } else if (Math.abs(destination - start) * 264 > 2500) {
         return 'cannot travel that far';
     }
 }
+    
 
 calculatesFarePrice(43, 44)
 calculatesFarePrice(34, 32)
 calculatesFarePrice(50, 58)
 calculatesFarePrice(34, 24)
+
+
+
